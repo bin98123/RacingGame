@@ -9,7 +9,7 @@
 
 <body>
 <a class="btn btn-primary btn-lg" href="<c:url value="/race"/>">Race</a>
-
+<input type="button" name="login" value="login"><input type="button" name="signup" value="signup">
 <script>
 
 </script>
