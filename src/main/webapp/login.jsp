@@ -4,21 +4,56 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Insert title here</title>
-</head>
-<body>
-<h1>Login Here</h1>
-<form action="UserProfile" method="post" style='float: left;'>
-		<pre>
-UserName: <input type="text" name="uname">
-Password: <input type="password" name="upass">
-    <input type="submit" value="Login">
-</pre>
-
-</form>
-<form action="UserRegister" method="post">
-
-    <input type="submit" value="Regist">
-</form>
-</body>
-</html>
+    <title>Sign Up</title>
+    <style type="text/css">
+    t1 {
+        left: 400px;
+        bottom:  320px;
+        position: fixed;
+        color: black;
+        font-size: 20px;
+    }
+    
+  
+    
+    submit {
+        left: 320; position: fixed;
+    }
+    
+    .top_pic {
+        align-self: top;
+    }
+    </style>
+    </head>
+    <body background="top_background.png">
+        <!-- 	<div class="top_pic">  -->
+        <!-- 	<img src="top_background.png" width="1350"> -->
+        <!-- 	</div> -->
+        <h1>Login</h1>
+        <form method="POST" action="LoginServlet">
+    
+            <h3></h3>
+            <h3></h3>
+            <h3></h3>
+            <h3></h3>
+            <h3></h3>
+            <b> <t1> Username: </t1>
+                <h3 align="center">
+                    <a><input type="text" size="32" name="uname"></a>
+                </h3>
+            </b>
+            <t1> Password: </t1>
+            <h3 align="center">
+                <a><input type="text" size="32" name="upass"></a>
+            </h3>
+    
+            <h3 align="center">
+                <input type="submit" value="Log In" name="submit">
+                <h3>Need a account?</h3>
+                <a href="/RacingGame/signup.jsp">SIGN UP NOW</a>
+            </h3>
+        </form>
+    
+    </body>
+    </html>
+    
