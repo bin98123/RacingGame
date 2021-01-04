@@ -28,7 +28,7 @@
 
 <body background="background.png">
 <h1>Sign Up Now, It's Free!</h1>
-<form method="POST" action="SignUpServlet">
+<form method="POST" action="SignUp">
 <t1>
 Username:
 </t1>
