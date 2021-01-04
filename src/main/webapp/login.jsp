@@ -25,7 +25,6 @@
     }
     </style>
     </head>
-    <body background="top_background.png">
         <!-- 	<div class="top_pic">  -->
         <!-- 	<img src="top_background.png" width="1350"> -->
         <!-- 	</div> -->
