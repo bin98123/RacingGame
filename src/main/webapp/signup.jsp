@@ -14,13 +14,13 @@
      t1{
             left:  400px;
 
-            down:320px;
+            bottom:320px;
             position: fixed;
             color: black;
             font-size: 20px;
         }
         submit{
-        left:320
+        left:320;
           position: fixed;
         }
     </style>
