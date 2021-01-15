@@ -1,57 +1,91 @@
 package dao;
 
-import java.sql.Statement;
+public class UserDetails implements Comparable {
+	private String userID = null;
+	private String userName = null;
+	private String userNameIG = null;
+	private String userPassword = null;
+	private String userEmail = null;
+	private int userRank = 0;
+	private int userScore = 0;
 
-import javax.swing.JOptionPane;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class UserDao {
-	String INSERT_USERS_SQL = "INSERT INTO user" + "  (uid ,unameig,uname , upass, uemail, urank, uscore) VALUES "
-			+ " (?, ?, ?, ?, ?,?,?);";
-
-
-
-	public int registerUser(UserDetails user) throws ClassNotFoundException, SQLException {
-		int result = 0;
-		Class.forName("org.hsqldb.jdbcDriver");
-
-		try (Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/examples", "sa", ""))
-
-
-		{
-			// Step 3: Execute the query or update query
-			try {
-				Statement statement = connection.createStatement();
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-			String uName = user.getUserName();
-			String uIGName = user.getUserNameIG();
-			String uEmail = user.getUserEmail();
-
-			try (PreparedStatement insert = connection.prepareStatement(INSERT_USERS_SQL)) {
-				insert.setString(1, user.getUserID());
-				insert.setString(2, user.getUserName());
-				insert.setString(3, user.getUserNameIG());
-				insert.setString(4, user.getUserPassword());
-				insert.setString(5, user.getUserEmail());
-				insert.setInt(6, user.getUserRank());
-				insert.setInt(7, user.getUserScore());
-				insert.executeUpdate();
-				result = insert.executeUpdate();
-
-			}
-
-		}
-		return result;
-
+	public UserDetails() {
 	}
-			
+
+	public UserDetails(String userID, String userName, String userNameIG, String userPassword, String userEmail,
+					   int userRank, int userScore) {
+		super();
+		this.userID = userID;
+		this.userName = userName;
+		this.userNameIG = userNameIG;
+		this.userPassword = userPassword;
+		this.userEmail = userEmail;
+		this.userRank = userRank;
+		this.userScore = userScore;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+
+		UserDetails n = (UserDetails) o;
+		int lastCmp = userName.compareTo(n.userName);
+		return (lastCmp);
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setUserNameIG(String userNameIG) {
+		this.userNameIG = userNameIG;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public void setUserRank(int userRank) {
+		this.userRank = userRank;
+	}
+
+	public void setUserScore(int userScore) {
+		this.userScore = userScore;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getUserNameIG() {
+		return userNameIG;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public int getUserRank() {
+		return userRank;
+	}
+
+	public int getUserScore() {
+		return userScore;
+	}
 
 }

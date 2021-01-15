@@ -1,4 +1,4 @@
-package servlet;
+package servlets;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -15,7 +15,7 @@ import dao.UserDetails;
 /**
  * Servlet implementation class UserRegister
  */
-@WebServlet("/SignUp")
+@WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
@@ -28,8 +28,9 @@ public class SignUpServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 //		String userID = request.getParameter("userID");
-		boolean ok = false;
+		boolean ok = true;
 		String userName = request.getParameter("userName");
+		System.out.println(userName);
 		String userNameIG = request.getParameter("userNameIG");
 		String userID = userName + userNameIG;
 		String userPassword = request.getParameter("userPassword");
@@ -37,7 +38,8 @@ public class SignUpServlet extends HttpServlet {
 //		String userRank = request.getParameter("userRank");
 		int userRank = 0;
 		int userScore = 0;
-		UserDetails userDetails = new UserDetails();
+		UserDetails userDetails = new UserDetails(userID, userName, userNameIG, userPassword, userEmail, userRank,
+				userScore);
 		if ((userEmail == "")) {
 			ok = false;
 			request.setAttribute("registeredUser", userDetails);
@@ -52,34 +54,39 @@ public class SignUpServlet extends HttpServlet {
 		}
 		if ((userPassword == "")) {
 			ok = false;
-			request.setAttribute("registeredUser", userDao);
+			request.setAttribute("registeredUser", userDetails);
 			request.setAttribute("passwordError", "You must enter password!!!");
 		}
-		if ((userName == "")) {
+		if ((userName.equalsIgnoreCase("")) || (userName == "") | userName == null) {
 			ok = false;
-			request.setAttribute("registeredUser", userDao);
+			System.out.println(ok);
+			request.setAttribute("registeredUser", userDetails);
 			request.setAttribute("userNameError", "You must enter user name!!!");
 		}
 		if ((userNameIG == "")) {
 			ok = false;
-			request.setAttribute("registeredUser", userDao);
-			request.setAttribute("userNameIGError", "You must enter user name in game!!!");
+			request.setAttribute("registeredUser", userDetails);
+			request.setAttribute("nameIGError", "You must enter user name in game!!!");
 		}
 
-		userDetails.setUserID(userID);
-		userDetails.setUserName(userName);
-		userDetails.setUserNameIG(userNameIG);
-		userDetails.setUserPassword(userPassword);
-		userDetails.setUserEmail(userEmail);
-		userDetails.setUserRank(userRank);
-		userDetails.setUserScore(userScore);
-
 		try {
-			userDao.registerUser(userDetails);
-			if (userDao.registerUser(userDetails) > 0) {
-				request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
+			if (ok == true) {
+				userDetails.setUserID(userID);
+				userDetails.setUserName(userName);
+				userDetails.setUserNameIG(userNameIG);
+				userDetails.setUserPassword(userPassword);
+				userDetails.setUserEmail(userEmail);
+				userDetails.setUserRank(userRank);
+				userDetails.setUserScore(userScore);
+				userDao.registerUser(userDetails);
+				if (userDao.registerUser(userDetails) > 0) {
+					request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
+				}
 			} else
-				response.sendRedirect("signup.jsp");
+//				request.setAttribute("registeredUser", userDetails);
+//				response.sendRedirect("signup.jsp");
+				request.setAttribute("registeredUser", userDetails);
+			getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
 //			response.sendRedirect("UserRegistSuccess.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
