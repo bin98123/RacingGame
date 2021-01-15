@@ -5,7 +5,8 @@
     ResourceBundle messages = (ResourceBundle) session.getAttribute("messages");
     if (messages == null) {
         Locale locale = request.getLocale();
-        messages = ResourceBundle.getBundle("messages.Messages_vi", locale);
+//             Locale locale = null;
+        messages = ResourceBundle.getBundle("messages.Messages", locale);
         session.setAttribute("messages", messages);
     }
 %>
@@ -186,6 +187,11 @@
 
 <body>
 <div class="bg">
+    <select name="language" id="language" class="combobox">
+        <option value="1">Vietnamese</option>
+        <option value="2">English</option>
+
+    </select>
     <button class="button1" onclick="window.location.href='login.jsp'"><%=messages.getString("login_index")%></button>
     <button class="button2"><%=messages.getString("Signup_index")%></button>
     <button class="button3"><%=messages.getString("trial")%></button>
