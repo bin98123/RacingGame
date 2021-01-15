@@ -23,62 +23,6 @@
             color: black;
             font-size: 20px;
         }
-        userName {
-            left: 520px;
-            down: 320px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        userName1 {
-            left: 820px;
-            down: 320px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        nameIG {
-            left: 520px;
-            down: 280px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        nameIG1 {
-            left: 820px;
-            down: 280px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        password {
-            left: 520px;
-            down: 240px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        password1 {
-            left: 820px;
-            down: 240px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        emailInput {
-            left: 520px;
-            down: 200px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
-        emailInput1 {
-            left: 820px;
-            down: 200px;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-        }
 
         submit {
             left: 320 position: fixed;

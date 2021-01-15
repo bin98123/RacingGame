@@ -40,27 +40,43 @@
 <!-- 	<img src="top_background.png" width="1350"> -->
 <!-- 	</div> -->
 <h1>Login</h1>
-<form method="POST" action="LoginServlet">
+<form method="POST" action="SigInServlet">
 
     <h3></h3>
     <h3></h3>
     <h3></h3>
     <h3></h3>
     <h3></h3>
-    <b> <t1> Username: </t1>
-        <h3 align="center">
-            <a><input type="text" size="32" name="uname"></a>
-        </h3>
-    </b>
-    <t1> Password: </t1>
-    <h3 align="center">
-        <a><input type="text" size="32" name="upass"></a>
-    </h3>
+    <table>
+        <tr>
+                <%
+		String userName = (String) request.getAttribute("userNameError");
+		//             String userName = "fss";
+		if (userName == null)
+			userName = "";
+		%>
 
-    <h3 align="center">
-        <input type="submit" value="Log In" name="submit">
-        <h3>Need a account?</h3>
-        <a href="/RacingGame/signup.jsp">SIGN UP NOW</a>
+        <tr>
+            <td width="30%" align="right">Username:</td>
+            <td><input type="text" size="32" name="userName"
+                       value="${registeredUser.userName}"><%=userName%></td>
+        </tr>
+        <%
+            String password = (String) request.getAttribute("passwordError");
+            if (password == null)
+                password = "";
+        %>
+        <tr>
+            <td width="30%" align="right"> Password:</td>
+            <td><input  type="text" size="32" name="userPassword"
+                        value="${registeredUser.userPassword}"><%=password%></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Log In" name="submit"></td>
+    </table>
+    <h3>Need a account?</h3>
+    <a href="/RacingGame/signup.jsp">SIGN UP NOW</a>
     </h3>
 </form>
 
