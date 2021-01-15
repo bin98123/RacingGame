@@ -50,7 +50,7 @@ public class SignUpServlet extends HttpServlet {
 			if (userDao.registerUser(userDetails) > 0) {
 				request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
 			} else
-				response.sendRedirect("RegistFail.jsp");
+				response.sendRedirect("signup.jsp");
 //			response.sendRedirect("UserRegistSuccess.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
