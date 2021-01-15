@@ -23,6 +23,62 @@
             color: black;
             font-size: 20px;
         }
+        userName {
+            left: 520px;
+            down: 320px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        userName1 {
+            left: 820px;
+            down: 320px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        nameIG {
+            left: 520px;
+            down: 280px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        nameIG1 {
+            left: 820px;
+            down: 280px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        password {
+            left: 520px;
+            down: 240px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        password1 {
+            left: 820px;
+            down: 240px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        emailInput {
+            left: 520px;
+            down: 200px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
+        emailInput1 {
+            left: 820px;
+            down: 200px;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+        }
 
         submit {
             left: 320 position: fixed;
@@ -33,52 +89,60 @@
 <body background="background.jpg">
 <h1>Sign Up Now, It's Free!</h1>
 <form method="POST" action="SignUpServlet">
-    <t1> Username: <%
-        String userName = (String) request.getAttribute("userNameError");
-        //             String userName = "fss";
-        if (userName == null)
-            userName = "";
-    %> </t1>
+    <table>
+        <tr>
+                <%
+		String userName = (String) request.getAttribute("userNameError");
+		//             String userName = "fss";
+		if (userName == null)
+			userName = "";
+		%>
+
+        <tr>
+            <td width="30%" align="right">Username:</td>
+            <td><input type="text" size="32" name="userName"
+                       value="${registeredUser.userName}"><%=userName%></td>
+        </tr>
+        <%
+
+            String nameIG = (String) request.getAttribute("nameIGError");
+            if (nameIG == null)
+                nameIG = "";
+        %>
+        <tr>
+            <td width="30%" align="right">UsernameIG:</td>
+            <td><input type="text" size="32" name="userNameIG"
+                       value="${registeredUser.userNameIG}"> <%=nameIG%></td>
+        </tr>
+        <%
+            String password = (String) request.getAttribute("passwordError");
+            if (password == null)
+                password = "";
+        %>
+        <tr>
+            <td width="30%" align="right"> Password:</td>
+            <td><input  type="text" size="32" name="userPassword"
+                        value="${registeredUser.userPassword}"><%=password%></td>
+        </tr>
+        <%
+            String emailInput = (String) request.getAttribute("emailError");
+            String emailEcho = (String) request.getParameter("emailError");
+            String email = request.getParameter("email");
+            if (emailInput == null)
+                emailInput = "";
+            if (emailEcho == null)
+                emailEcho = "";
+        %>
+        <tr>
+            <td width="30%" align="right"> Email:</td>
+            <td><input type="text" size="32" name="userEmail"
+                       value="${registeredUser.userEmail}"><%=emailInput%></td>
+        </tr>
+    </table>
     <h3 align="center">
-        <u1><input type="text" size="32" name="userName"
-                   value="${registeredUser.userName}"> <%=userName%></u1>
-    </h3>
-    <t1> UsernameIG: <%
-        String nameIG = (String) request.getAttribute("nameIGError");
-        if (nameIG == null)
-            nameIG = "";
-    %> </t1>
-    <h3 align="center">
-        <u1><input type="text" size="32" name="userNameIG"
-                   value="${registeredUser.userNameIG}"> <%=nameIG%></u1>
-    </h3>
-    <t1> Password: <%
-        String password = (String) request.getAttribute("passwordError");
-        if (password == null)
-            password = "";
-    %> </t1>
-    <h3 align="center">
-        <u1><input type="text" size="32" name="userPassword"
-                   value="${registeredUser.userPassword}"><%=password%></u1>
-    </h3>
-    <t1> Email: <%
-        String emailInput = (String) request.getAttribute("emailError");
-        String emailEcho = (String) request.getParameter("emailError");
-        String email = request.getParameter("email");
-        if (emailInput == null)
-            emailInput = "";
-        if (emailEcho == null)
-            emailEcho = "";
-    %> </t1>
-    <h3 align="center">
-        <u1><input type="text" size="32" name="userEmail"
-                   value="${registeredUser.userEmail}"> <%=emailInput%></u1>
-    </h3>
-    <h3 align="center">
-        <input type="submit" value="Create Account" name="submit">
-        <h3>Have a account?</h3>
-        <a href="/RacingGame/login.jsp">LOG IN NOW</a>
-    </h3>
+        <input type="submit" value="Create Account" name="submit"></h3>
+    <h3>Have a account?</h3>
+    <a href="/RacingGame/login.jsp">LOG IN NOW</a>
 </form>
 
 </body>
