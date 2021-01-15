@@ -1,5 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.*"%>
+<%
+    ResourceBundle messages = (ResourceBundle) session.getAttribute("messages");
+    if (messages == null) {
+        Locale locale = request.getLocale();
+        messages = ResourceBundle.getBundle("messages.Messages_vi", locale);
+        session.setAttribute("messages", messages);
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,6 +115,7 @@
             top: 460px;
             padding: 10px 50px;
             position: fixed;
+            font-family: times new roman;
 
             color: rgb(2, 1, 1);
 
@@ -127,6 +137,22 @@
             position: fixed;
             color: white;
             font-size: 40px;
+        }
+        tt1 {
+            left: 220px;
+
+            top: 210px;
+            position: fixed;
+            color: black;
+            font-size: 35px;
+        }
+        tt2 {
+            left: 220px;
+
+            top: 264px;
+            position: fixed;
+            color: black;
+            font-size: 35px;
         }
 
         t1 {
@@ -160,17 +186,18 @@
 
 <body>
 <div class="bg">
-    <button class="button1" onclick="window.location.href='login.jsp'">Log In</button>
-    <button class="button2">Sign Up</button>
-    <button class="button3">Trial</button>
-    <a class="button4" href="<c:url value="/race"/>">Race as a Guest</a>
-    <button class="button5">Sign Up For Free</button>
+    <button class="button1" onclick="window.location.href='login.jsp'"><%=messages.getString("login_index")%></button>
+    <button class="button2"><%=messages.getString("Signup_index")%></button>
+    <button class="button3"><%=messages.getString("trial")%></button>
+    <a class="button4" href="<c:url value="/race"/>"><%=messages.getString("Race_index")%></a>
+    <button class="button5"><%=messages.getString("Free_Signup_index")%></button>
 
-    <h1>Worldwide Real-Time </h1>
-    <h2>Typing Competition</h2>
-    <t1>Improve your typing skills while competing in fast-paced races with</t1>
-    <t2>up to 5 typers from around the world. Compete against your friends,</t2>
-    <t3>earn new cars, track your scores, and so much more... all for free!</t3>
+
+    <tt1><%=messages.getString("Title1")%></tt1>
+    <tt2><%=messages.getString("Title2")%></tt2>
+    <t1><%=messages.getString("Detiles1")%></t1>
+    <t2><%=messages.getString("Detiles2")%></t2>
+    <t3><%=messages.getString("Detiles3")%></t3>
 </div>
 </body>
 </html>
