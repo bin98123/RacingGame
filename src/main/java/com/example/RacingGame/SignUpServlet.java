@@ -76,8 +76,10 @@ public class SignUpServlet extends HttpServlet {
 				userDetails.setUserEmail(userEmail);
 				userDetails.setUserRank(userRank);
 				userDetails.setUserScore(userScore);
-
-//				userDao.registerUser(userDetails);
+				// gửi mail, nếu sign up trc sẽ ko gửi đc mail
+				mail.sendMail(userEmail);
+				// đăng ký
+			userDao.registerUser(userDetails);
 
 				if (userDao.registerUser(userDetails) != 0) {
 					request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
