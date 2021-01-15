@@ -78,6 +78,7 @@ public class SignInServlet extends HttpServlet {
                     } else {
 
                         if (!rs.next()) {
+
 //					HttpSession session = request.getSession();
 //					response.sendRedirect("http://localhost:8080/RacingGame/Regagain.jsp");
                             request.setAttribute("registeredUser", userDetails);
