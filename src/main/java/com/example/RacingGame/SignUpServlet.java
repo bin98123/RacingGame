@@ -30,7 +30,6 @@ public class SignUpServlet extends HttpServlet {
 //		String userID = request.getParameter("userID");
 		boolean ok = true;
 		String userName = request.getParameter("userName");
-		System.out.println(userName);
 		String userNameIG = request.getParameter("userNameIG");
 		String userID = userName + userNameIG;
 		String userPassword = request.getParameter("userPassword");
@@ -59,7 +58,6 @@ public class SignUpServlet extends HttpServlet {
 		}
 		if ((userName.equalsIgnoreCase("")) || (userName == "") | userName == null) {
 			ok = false;
-			System.out.println(ok);
 			request.setAttribute("registeredUser", userDetails);
 			request.setAttribute("userNameError", "You must enter user name!!!");
 		}

@@ -138,9 +138,10 @@
             <td><input type="text" size="32" name="userEmail"
                        value="${registeredUser.userEmail}"><%=emailInput%></td>
         </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create Account" name="submit"></td>
     </table>
-    <h3 align="center">
-        <input type="submit" value="Create Account" name="submit"></h3>
     <h3>Have a account?</h3>
     <a href="/RacingGame/login.jsp">LOG IN NOW</a>
 </form>
