@@ -43,7 +43,7 @@ public class SignUpServlet extends HttpServlet {
 		userDetails.setUserPassword(userPassword);
 		userDetails.setUserEmail(userEmail);
 		userDetails.setUserRank(userRank);
-		userDetails.setUserRank(userScore);
+		userDetails.setUserScore(userScore);
 
 		try {
 			userDao.registerUser(userDetails);
