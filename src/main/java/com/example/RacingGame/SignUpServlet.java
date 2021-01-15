@@ -1,7 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,7 @@ public class SignUpServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 //		String userID = request.getParameter("userID");
+		boolean ok = false;
 		String userName = request.getParameter("userName");
 		String userNameIG = request.getParameter("userNameIG");
 		String userID = userName + userNameIG;
@@ -35,8 +37,35 @@ public class SignUpServlet extends HttpServlet {
 //		String userRank = request.getParameter("userRank");
 		int userRank = 0;
 		int userScore = 0;
-
 		UserDetails userDetails = new UserDetails();
+		if ((userEmail == "")) {
+			ok = false;
+			request.setAttribute("registeredUser", userDetails);
+			request.setAttribute("emailError", "You must enter email!!!");
+
+		}
+		Pattern mailPattern = Pattern.compile("\\w+@\\w+(\\.\\w+)*");
+		Matcher mailMatcher = mailPattern.matcher((CharSequence) userEmail);
+		if (!mailMatcher.matches()) {
+			ok = false;
+			request.setAttribute("emailError", "Error pattern email!!!");
+		}
+		if ((userPassword == "")) {
+			ok = false;
+			request.setAttribute("registeredUser", userDao);
+			request.setAttribute("passwordError", "You must enter password!!!");
+		}
+		if ((userName == "")) {
+			ok = false;
+			request.setAttribute("registeredUser", userDao);
+			request.setAttribute("userNameError", "You must enter user name!!!");
+		}
+		if ((userNameIG == "")) {
+			ok = false;
+			request.setAttribute("registeredUser", userDao);
+			request.setAttribute("userNameIGError", "You must enter user name in game!!!");
+		}
+
 		userDetails.setUserID(userID);
 		userDetails.setUserName(userName);
 		userDetails.setUserNameIG(userNameIG);
