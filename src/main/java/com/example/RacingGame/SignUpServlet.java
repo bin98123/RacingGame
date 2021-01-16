@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDao;
 import dao.UserDetails;
 
-
+/**
+ * Servlet implementation class UserRegister
+ */
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,17 +27,14 @@ public class SignUpServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		boolean ok = true;
 		String userName = request.getParameter("userName");
 		String userNameIG = request.getParameter("userNameIG");
 		String userID = userName + userNameIG;
 		String userPassword = request.getParameter("userPassword");
 		String userEmail = request.getParameter("userEmail");
-
 		int userRank = 0;
 		int userScore = 0;
-
 		UserDetails userDetails = new UserDetails();
 		userDetails.setUserID(userID);
 		userDetails.setUserName(userName);
@@ -44,6 +43,7 @@ public class SignUpServlet extends HttpServlet {
 		userDetails.setUserEmail(userEmail);
 		userDetails.setUserRank(userRank);
 		userDetails.setUserScore(userScore);
+		userDetails = new UserDetails(userID, userName, userNameIG, userPassword, userEmail, userRank, userScore);
 		if ((userEmail == "")) {
 			ok = false;
 			request.setAttribute("registeredUser", userDetails);
@@ -75,21 +75,19 @@ public class SignUpServlet extends HttpServlet {
 		try {
 			UserDao userDao = new UserDao();
 			if (ok == true && userDao.registerUser(userDetails) != 0) {
+				response.sendRedirect("/Project/WelcomeUser.jsp");
 
-				response.sendRedirect("/RacingGame/WelcomeUser.jsp");
 			} else {
-
-				response.sendRedirect("/RacingGame/signup.jsp");
+				request.setAttribute("registeredUser", userDetails);
+//				giữ các giá trị của userDetails khi forward tới trang signup.jsp
+				getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
 
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 }
