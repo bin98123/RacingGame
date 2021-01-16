@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
@@ -26,7 +27,7 @@ public class SignUpServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+//		doGet(request, response);
 //		String userID = request.getParameter("userID");
 		boolean ok = true;
 		String userName = request.getParameter("userName");
@@ -37,8 +38,16 @@ public class SignUpServlet extends HttpServlet {
 //		String userRank = request.getParameter("userRank");
 		int userRank = 0;
 		int userScore = 0;
-		UserDetails userDetails = new UserDetails(userID, userName, userNameIG, userPassword, userEmail, userRank,
-				userScore);
+//		UserDetails userDetails = new UserDetails(userID, userName, userNameIG, userPassword, userEmail, userRank,
+//				userScore);
+		UserDetails userDetails = new UserDetails();
+		userDetails.setUserID(userID);
+		userDetails.setUserName(userName);
+		userDetails.setUserNameIG(userNameIG);
+		userDetails.setUserPassword(userPassword);
+		userDetails.setUserEmail(userEmail);
+		userDetails.setUserRank(userRank);
+		userDetails.setUserScore(userScore);
 		if ((userEmail == "")) {
 			ok = false;
 			request.setAttribute("registeredUser", userDetails);
@@ -56,7 +65,7 @@ public class SignUpServlet extends HttpServlet {
 			request.setAttribute("registeredUser", userDetails);
 			request.setAttribute("passwordError", "You must enter password!!!");
 		}
-		if ((userName.equalsIgnoreCase("")) || (userName == "") | userName == null) {
+		if (userName == "") {
 			ok = false;
 			request.setAttribute("registeredUser", userDetails);
 			request.setAttribute("userNameError", "You must enter user name!!!");
@@ -68,44 +77,32 @@ public class SignUpServlet extends HttpServlet {
 		}
 
 		try {
-			if (ok == true) {
-				userDetails.setUserID(userID);
-				userDetails.setUserName(userName);
-				userDetails.setUserNameIG(userNameIG);
-				userDetails.setUserPassword(userPassword);
-				userDetails.setUserEmail(userEmail);
-				userDetails.setUserRank(userRank);
-				userDetails.setUserScore(userScore);
-				// gửi mail, nếu sign up trc sẽ ko gửi đc mail
-				mail.sendMail(userEmail);
-				// đăng ký
-			userDao.registerUser(userDetails);
+			UserDao userDao = new UserDao();
+			if (ok = true && userDao.registerUser(userDetails) != 0) {
+//			response.sendRedirect("/QuanLyLoaiThucVat/admin.jsp");
+				response.sendRedirect("/RacingGame/WelcomeUser.jsp");
+			} else {
+//			response.sendRedirect("/QuanLyLoaiThucVat/add.jsp");
+				response.sendRedirect("/RacingGame/signup.jsp");
 
-				if (userDao.registerUser(userDetails) != 0) {
-					request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
-				}
-			} else
-//				request.setAttribute("registeredUser", userDetails);
-//				response.sendRedirect("signup.jsp");
-				request.setAttribute("registeredUser", userDetails);
-			getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
-//			response.sendRedirect("UserRegistSuccess.jsp");
-		} catch (Exception e) {
+			}
+		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-//		try {
-//			if (userDao.registerUser(userDetails) == 0) {
-//				response.sendRedirect("RegistFail.jsp");
-//			} else {
-
 	}
 
-//		} catch (ClassNotFoundException |
-//
-//				IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doGet(request, response);
+//	}
+
 }
-//}
