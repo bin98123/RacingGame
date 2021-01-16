@@ -24,7 +24,7 @@ public class Mail {
 
 // tài khoản mail
 		String myAccountEmail = "quockhanhtl156@gmail.com";
-		String userAccountEmail = "tranhungd264@gmail.com";
+	//f	String userAccountEmail = "tranhungd264@gmail.com";
 //		String userAccountEmail = "18130112@st.hcmuaf.edu.vn";
 // mật khẩu  mail, mẫu xxxxxx ko phải mật khẩu thật
 	String password = "xxxxxx";
