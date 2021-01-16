@@ -20,25 +20,11 @@ import dao.UserDetails;
 public class SignInServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-//	public SignInServlet() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		doPost(request, response);
-//	}
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         boolean ok = true;
         UserDetails userDetails = new UserDetails();
-//		PrintWriter out = response.getWriter();
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
         userDetails.setUserName(userName);
@@ -63,27 +49,18 @@ public class SignInServlet extends HttpServlet {
                     Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/sample", "sa", "");
 
                     Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery(
-                            "select uname,upass from user where uname='" + userName + "' and upass='" + userPassword + "'");
+                    ResultSet rs = stmt.executeQuery("select uname,upass from user where uname='" + userName
+                            + "' and upass='" + userPassword + "'");
 
                     if (rs.next()) {
-//					response.sendRedirect(
-//							"http://localhost:8080/RacingGame/WelcomeUser.jsp?name=" + rs.getString("uname"));
-//
-//					HttpSession session = request.getSession();
-//					session.setAttribute("uname", uname);
-//						request.getRequestDispatcher("/RacingGame/WelcomeUser.jsp").forward(request, response);
                         request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
 
                     } else {
 
                         if (!rs.next()) {
 
-//					HttpSession session = request.getSession();
-//					response.sendRedirect("http://localhost:8080/RacingGame/Regagain.jsp");
                             request.setAttribute("registeredUser", userDetails);
-//							request.getRequestDispatcher("/RacingGame/login.jsp").forward(request, response);
-                            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                            getServletContext().getRequestDispatcher("/loginError.jsp").forward(request, response);
 
                         }
                     }
@@ -95,14 +72,13 @@ public class SignInServlet extends HttpServlet {
                 }
             } else {
                 request.setAttribute("registeredUser", userDetails);
-//				request.getRequestDispatcher("/RacingGame/login.jsp").forward(request, response);
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 
             }
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println("Exception in UserProfile: " + e);
         }
 
     }
+
 }
