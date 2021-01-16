@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
 import dao.UserDetails;
+import mail.Mail;
 
 /**
  * Servlet implementation class UserRegister
@@ -20,6 +23,7 @@ import dao.UserDetails;
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
+	private Mail mail;
 
 	public void init() {
 		userDao = new UserDao();
@@ -75,7 +79,13 @@ public class SignUpServlet extends HttpServlet {
 		try {
 			UserDao userDao = new UserDao();
 			if (ok == true && userDao.registerUser(userDetails) != 0) {
-				response.sendRedirect("/RacingGame/WelcomeUser.jsp");
+				try {
+					mail.sendMail(userEmail);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				response.sendRedirect("/Project/WelcomeUser.jsp");
 
 			} else {
 				request.setAttribute("registeredUser", userDetails);
