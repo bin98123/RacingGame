@@ -75,7 +75,7 @@ public class SignUpServlet extends HttpServlet {
 		try {
 			UserDao userDao = new UserDao();
 			if (ok == true && userDao.registerUser(userDetails) != 0) {
-				response.sendRedirect("/Project/WelcomeUser.jsp");
+				response.sendRedirect("/RacingGame/WelcomeUser.jsp");
 
 			} else {
 				request.setAttribute("registeredUser", userDetails);
