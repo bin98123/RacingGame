@@ -99,6 +99,7 @@
                        value="${registeredUser.userEmail}"><%=emailInput%></td>
         </tr>
         <tr>
+            <td>
             <td><input type="submit" value="Create Account" name="submit"></td>
     </table>
     <h3>Have a account?</h3>

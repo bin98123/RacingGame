@@ -86,6 +86,7 @@
 			</tr>
 <tr>
    <td>
+	<td>
 			<input type="submit" value="Log In" name="submit"></td>
 		</table>
         <h3>Need a account?</h3>
