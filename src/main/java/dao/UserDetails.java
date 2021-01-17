@@ -1,6 +1,6 @@
 package dao;
 
-public class UserDetails implements Comparable {
+public class UserDetails {
 	private String userID = null;
 	private String userName = null;
 	private String userNameIG = null;
@@ -24,13 +24,7 @@ public class UserDetails implements Comparable {
 		this.userScore = userScore;
 	}
 
-	@Override
-	public int compareTo(Object o) {
 
-		UserDetails n = (UserDetails) o;
-		int lastCmp = userName.compareTo(n.userName);
-		return (lastCmp);
-	}
 
 	public void setUserID(String userID) {
 		this.userID = userID;

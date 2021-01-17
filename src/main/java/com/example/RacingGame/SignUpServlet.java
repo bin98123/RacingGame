@@ -78,19 +78,26 @@ public class SignUpServlet extends HttpServlet {
 
 		try {
 			UserDao userDao = new UserDao();
-			if (ok == true && userDao.registerUser(userDetails) != 0) {
-				try {
-					mail.sendMail(userEmail);
-				} catch (MessagingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				response.sendRedirect("/Project/WelcomeUser.jsp");
+			if (userDao.checkExistUser(userDetails) == 0)
+				if (ok == true && userDao.registerUser(userDetails) != 0) {
+					try {
+						mail.sendMail(userEmail);
+						response.sendRedirect("/RacingGame/WelcomeUser.jsp");
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-			} else {
+				} else {
+					request.setAttribute("registeredUser", userDetails);
+//				giữ các giá trị của userDetails khi forward tới trang signup.jsp
+					getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+
+				}
+			else {
 				request.setAttribute("registeredUser", userDetails);
 //				giữ các giá trị của userDetails khi forward tới trang signup.jsp
-				getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/signupError.jsp").forward(request, response);
 
 			}
 		} catch (ClassNotFoundException | IOException e) {
