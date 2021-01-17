@@ -23,16 +23,15 @@
             color: black;
             font-size: 20px;
         }
+
         b {
             color: red;
             border: true;
-            top:30;
+            top: 30;
             font-size: 30px;
-            right:200
-            font-size: 30px;
+            right: 200 font-size: 30px;
             left: 400px;
             position: fixed;
-
         }
 
         submit {
@@ -44,15 +43,21 @@
 <body background="background.jpg">
 <h1>Sign Up Now, It's Free!</h1>
 <form method="POST" action="SignUpServlet">
-    <b>Input value has exist!!!</b>
+    <%
+        String alert = (String) request.getAttribute("Alert");
+        //             String userName = "fss";
+        // 		if (alert == null)
+        // 			alert = "";
+    %>
+    <b>Input Values Has Existed</b>
     <table>
         <tr>
                 <%
-		String userName = (String) request.getAttribute("userNameError");
-		//             String userName = "fss";
-		if (userName == null)
-			userName = "";
-		%>
+				String userName = (String) request.getAttribute("userNameError");
+				//             String userName = "fss";
+				if (userName == null)
+					userName = "";
+				%>
 
         <tr>
             <td width="30%" align="right">Username:</td>
@@ -60,7 +65,6 @@
                        value="${registeredUser.userName}"><%=userName%></td>
         </tr>
         <%
-
             String nameIG = (String) request.getAttribute("nameIGError");
             if (nameIG == null)
                 nameIG = "";
@@ -76,9 +80,9 @@
                 password = "";
         %>
         <tr>
-            <td width="30%" align="right"> Password:</td>
-            <td><input  type="text" size="32" name="userPassword"
-                        value="${registeredUser.userPassword}"><%=password%></td>
+            <td width="30%" align="right">Password:</td>
+            <td><input type="text" size="32" name="userPassword"
+                       value="${registeredUser.userPassword}"><%=password%></td>
         </tr>
         <%
             String emailInput = (String) request.getAttribute("emailError");
@@ -90,13 +94,12 @@
                 emailEcho = "";
         %>
         <tr>
-            <td width="30%" align="right"> Email:</td>
+            <td width="30%" align="right">Email:</td>
             <td><input type="text" size="32" name="userEmail"
                        value="${registeredUser.userEmail}"><%=emailInput%></td>
         </tr>
         <tr>
-            <td>
-                <input type="submit" value="Create Account" name="submit"></td>
+            <td><input type="submit" value="Create Account" name="submit"></td>
     </table>
     <h3>Have a account?</h3>
     <a href="/RacingGame/login.jsp">LOG IN NOW</a>

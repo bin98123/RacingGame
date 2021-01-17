@@ -37,6 +37,7 @@ public class SignUpServlet extends HttpServlet {
 		String userID = userName + userNameIG;
 		String userPassword = request.getParameter("userPassword");
 		String userEmail = request.getParameter("userEmail");
+		String alert = "";
 		int userRank = 0;
 		int userScore = 0;
 		UserDetails userDetails = new UserDetails();
@@ -56,6 +57,7 @@ public class SignUpServlet extends HttpServlet {
 		}
 		Pattern mailPattern = Pattern.compile("\\w+@\\w+(\\.\\w+)*");
 		Matcher mailMatcher = mailPattern.matcher((CharSequence) userEmail);
+
 		if (!mailMatcher.matches()) {
 			ok = false;
 			request.setAttribute("emailError", "Error pattern email!!!");
