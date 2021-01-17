@@ -5,6 +5,8 @@
   Time: 02:05 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.*"%>
+<%	ResourceBundle messages = (ResourceBundle) session.getAttribute("messages"); %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -34,26 +36,40 @@
             position: fixed;
         }
 
-        submit {
+        button {
             left: 320 position: fixed;
         }
 
         h2 {
             color: red;
         }
+        /* input { */
+        /*   background-color: white; */
+        /*   border: none; */
+        /*   color: white; */
+        /*   padding: 15px 32px; */
+        /*   text-align: center; */
+        /*   text-decoration: none; */
+        /*   display: inline-block; */
+        /*   font-size: 16px; */
+        /*   margin: 4px 2px; */
+        /*   cursor: pointer; */
+        /* } */
     </style>
 </head>
 
 <body background="background.jpg">
-<h1>Sign Up Now, It's Free!</h1>
+<h1><%=messages.getString("StartSU")%></h1>
 <form method="POST" action="SignUpServlet">
     <%
-        String alert = (String) request.getAttribute("Alert");
+        String alert = (String) request.getAttribute("AlertError");
         //             String userName = "fss";
-        // 		if (alert == null)
-        // 			alert = "";
+        if (alert == null)
+            alert = "";
     %>
-    <b>Input Values Has Existed</b>
+
+    <b><%=alert%></b>
+    <!-- 		<b>Input Values Has Existed</b> -->
     <table>
         <tr>
                 <%
@@ -75,7 +91,7 @@
         <tr>
         <tr>
         <tr>
-            <td width="48%" align="right"><h2>Username:</h2></td>
+            <td width="42%" align="right"><h2><%=messages.getString("user")%></h2></td>
             <td><h2>
                 <input type="text" size="32" name="userName"
                        value="${registeredUser.userName}"><%=userName%></h2></td>
@@ -86,7 +102,7 @@
                 nameIG = "";
         %>
         <tr>
-            <td width="48%" align="right"><h2>UsernameIG:</h2></td>
+            <td width="42%" align="right"><h2><%=messages.getString("userIG")%></h2></td>
             <td><h2>
                 <input type="text" size="32" name="userNameIG"
                        value="${registeredUser.userNameIG}">
@@ -98,8 +114,8 @@
                 password = "";
         %>
         <tr>
-            <td width="48%" align="right">
-                <h2>Password:</h2>
+            <td width="42%" align="right">
+                <h2><%=messages.getString("pass")%></h2>
             </td>
             <td><h2>
                 <input type="password" size="32" name="userPassword"
@@ -115,9 +131,9 @@
                 emailEcho = "";
         %>
         <tr>
-            <td width="48%" align="right">
+            <td width="42%" align="right">
                 <h2>
-                    Email:
+                        <%=messages.getString("email")%>
                     <h2>
             </td>
             <td><h2>
@@ -126,10 +142,11 @@
         </tr>
         <tr>
             <td>
-            <td><input type="submit" value="Create Account" name="submit"></td>
+            <td><input type="submit" value="<%=messages.getString("ca")%>"
+                       name="submit"></td>
     </table>
-    <h3>Have a account?</h3>
-    <a href="/Project/login.jsp">LOG IN NOW</a>
+    <h3><%=messages.getString("login?")%></h3>
+    <a href="/RacingGame/login.jsp"><%=messages.getString("login_index?")%></a>
 </form>
 
 </body>

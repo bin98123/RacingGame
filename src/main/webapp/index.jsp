@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*"%>
 <%
@@ -6,7 +6,7 @@
     if (messages == null) {
         Locale locale = request.getLocale();
 //             Locale locale = null;
-        messages = ResourceBundle.getBundle("messages.Messages", locale);
+        messages = ResourceBundle.getBundle("messages.BookstoreMessages", locale);
         session.setAttribute("messages", messages);
     }
 %>
@@ -34,8 +34,8 @@
 
         .button1 {
 
-            left: 880px;
-            font-size: 16px;
+            left: 840px;
+            font-size: 12px;
 
             padding: 15px 32px;
             position: fixed;
@@ -58,7 +58,7 @@
         .button2 {
             background-color: rgb(28, 179, 48);
             left: 1000px;
-            font-size: 16px;
+            font-size: 12px;
 
             padding: 15px 32px;
             position: fixed;
@@ -185,7 +185,7 @@
     </style>
 </head>
 
-<body>
+<body background="background.jpg">
 <div class="bg">
     <select name="language" id="language" class="combobox">
         <option value="1">Vietnamese</option>
@@ -193,10 +193,10 @@
 
     </select>
     <button class="button1" onclick="window.location.href='login.jsp'"><%=messages.getString("login_index")%></button>
-    <button class="button2"><%=messages.getString("Signup_index")%></button>
+    <button class="button2" onclick="window.location.href='signup.jsp'"><%=messages.getString("Signup_index")%></button>
     <button class="button3"><%=messages.getString("trial")%></button>
     <a class="button4" href="<c:url value="/race"/>"><%=messages.getString("Race_index")%></a>
-    <button class="button5"><%=messages.getString("Free_Signup_index")%></button>
+    <button class="button5" onclick="window.location.href='signup.jsp'"><%=messages.getString("Free_Signup_index")%></button>
 
 
     <tt1><%=messages.getString("Title1")%></tt1>

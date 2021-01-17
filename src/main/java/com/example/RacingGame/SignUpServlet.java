@@ -1,7 +1,10 @@
 package servlets;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +27,8 @@ public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
 	private Mail mail;
+//	private Properties p;
+//	InputStream is;
 
 	public void init() {
 		userDao = new UserDao();
@@ -32,9 +37,81 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		boolean ok = true;
+//		p = new Properties();
+//		is = new FileInputStream("messages\\BookstoreMessages_vi.properties");
+//		p.load(is);
+//		String emailError1 = p.getProperty("emailError1");
+//		String emailError2 = p.getProperty("emailError2");
 		String userName = request.getParameter("userName");
 		String userNameIG = request.getParameter("userNameIG");
-		String userID = userName + userNameIG;
+		String userID = "";
+		int temp = 0;
+
+		try {
+
+			temp = userDao.countUser() + 1;
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			if (userDao.countUser() < 10) {
+//			temp = userDao.countUser() + 1;
+				userID = "racingboiz000" + temp;
+			} else if (userDao.countUser() >= 1000 && userDao.countUser() <= 9999) {
+//				temp = userDao.countUser() + 1;
+				userID = "racingboiz" + temp;
+			} else if (userDao.countUser() >= 100 && userDao.countUser() <= 999) {
+//				temp = userDao.countUser() + 1;
+				userID = "racingboiz0" + temp;
+			}
+			if (userDao.countUser() >= 10 && userDao.countUser() <= 99) {
+//				temp = userDao.countUser() + 1;
+				userID = "racingboiz00" + temp;
+			}
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//
+//		try {
+//			if (userDao.countUser() < 100 && userDao.countUser() >= 10) {
+////					temp = userDao.countUser() + 1;
+//				userID = "racingboiz00" + temp;
+//
+//			}
+//		} catch (ClassNotFoundException | SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		try {
+//		else if (userDao.countUser() >= 1000 && userDao.countUser() <= 9999) {
+////						temp = userDao.countUser() + 1;
+//				userID = "racingboiz" + temp;
+//			}
+//		} catch (ClassNotFoundException | SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		try {
+//			if (userDao.countUser() >= 100 && userDao.countUser() <= 999) {
+////						temp = userDao.countUser() + 1;
+//				userID = "racingboiz0" + temp;
+//			}
+//		} catch (ClassNotFoundException | SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		try {
+//			if (userDao.countUser() >= 10 && userDao.countUser() <= 99) {
+////						temp = userDao.countUser() + 1;
+//				userID = "racingboiz00" + temp;
+//			}
+//		} catch (ClassNotFoundException | SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+
 		String userPassword = request.getParameter("userPassword");
 		String userEmail = request.getParameter("userEmail");
 		String alert = "";
@@ -52,6 +129,7 @@ public class SignUpServlet extends HttpServlet {
 		if ((userEmail == "")) {
 			ok = false;
 			request.setAttribute("registeredUser", userDetails);
+
 			request.setAttribute("emailError", "You must enter email!!!");
 
 		}
@@ -80,7 +158,7 @@ public class SignUpServlet extends HttpServlet {
 
 		try {
 			UserDao userDao = new UserDao();
-			if (userDao.checkExistUser(userDetails) == 0)
+			if (userDao.checkExistNameUser(userDetails) == 0)
 				if (ok == true && userDao.registerUser(userDetails) != 0) {
 					try {
 						mail.sendMail(userEmail);
@@ -97,6 +175,8 @@ public class SignUpServlet extends HttpServlet {
 
 				}
 			else {
+
+				request.setAttribute("AlertError", "User name has exist!!!");
 				request.setAttribute("registeredUser", userDetails);
 //				giữ các giá trị của userDetails khi forward tới trang signup.jsp
 				getServletContext().getRequestDispatcher("/signupError.jsp").forward(request, response);

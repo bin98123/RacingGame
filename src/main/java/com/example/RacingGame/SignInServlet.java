@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
 import dao.UserDetails;
 
 /**
@@ -42,7 +43,7 @@ public class SignInServlet extends HttpServlet {
         }
         try {
 
-            if (ok == true) {
+            if (ok == true ) {
                 try {
                     Class.forName("org.hsqldb.jdbcDriver");
 
