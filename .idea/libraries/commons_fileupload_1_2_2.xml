@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="commons-fileupload-1.2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/commons-fileupload-1.2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/commons-io-2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
