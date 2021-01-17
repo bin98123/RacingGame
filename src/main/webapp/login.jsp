@@ -23,13 +23,14 @@
             color: red;
             border: true;
             font-size: 30px;
-
         }
 
         submit {
             left: 320 position: fixed;
         }
-
+        h2{
+            color:red;
+        }
         .top_pic {
             align-self: top;
         }
@@ -46,20 +47,30 @@
     <h3></h3>
     <h3></h3>
     <h3></h3>
-    <h3></h3>
+
     <table>
         <tr>
                 <%
-		String userName = (String) request.getAttribute("userNameError");
-		//             String userName = "fss";
-		if (userName == null)
-			userName = "";
-		%>
-
+				String userName = (String) request.getAttribute("userNameError");
+				//             String userName = "fss";
+				if (userName == null)
+					userName = "";
+				%>
         <tr>
-            <td width="30%" align="right">Username:</td>
-            <td><input type="text" size="32" name="userName"
-                       value="${registeredUser.userName}"><%=userName%></td>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+            <td width="68%" align="right"><h2>Username:</h2></td>
+            <td><h2><input type="text" size="32" name="userName"
+                           value="${registeredUser.userName}"><%=userName%></h2></td>
         </tr>
         <%
             String password = (String) request.getAttribute("passwordError");
@@ -67,17 +78,16 @@
                 password = "";
         %>
         <tr>
-            <td width="30%" align="right"> Password:</td>
-            <td><input  type="password" size="32" name="userPassword"
-                        value="${registeredUser.userPassword}"><%=password%></td>
+            <td width="68%" align="right"><h2>Password:</h2></td>
+            <td><h2><input type="password" size="32" name="userPassword"
+                           value="${registeredUser.userPassword}"><%=password%></h2></td>
         </tr>
         <tr>
             <td>
-            <td>
-                <input type="submit" value="Log In" name="submit"></td>
+            <td><input type="submit" value="Log In" name="submit"></td>
     </table>
     <h3>Need a account?</h3>
-    <a href="/RacingGame/signup.jsp">SIGN UP NOW</a>
+    <a href="/Project/signup.jsp">SIGN UP NOW</a>
     </h3>
 </form>
 

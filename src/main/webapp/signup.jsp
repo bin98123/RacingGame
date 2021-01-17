@@ -15,6 +15,9 @@
             border: true;
             font-size: 30px;
         }
+        h2{
+            color:red;
+        }
 
         t1 {
             left: 400px;
@@ -43,9 +46,20 @@
 		%>
 
         <tr>
-            <td width="30%" align="right">Username:</td>
-            <td><input type="text" size="32" name="userName"
-                       value="${registeredUser.userName}"><%=userName%></td>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+        <tr>
+            <td width="68%" align="right"><h2>Username:</h2></td>
+            <td><h2><input type="text" size="32" name="userName"
+                           value="${registeredUser.userName}"><%=userName%></h2></td>
         </tr>
         <%
 
@@ -54,9 +68,9 @@
                 nameIG = "";
         %>
         <tr>
-            <td width="30%" align="right">UsernameIG:</td>
-            <td><input type="text" size="32" name="userNameIG"
-                       value="${registeredUser.userNameIG}"> <%=nameIG%></td>
+            <td width="68%" align="right"><h2>UsernameIG:</h2></td>
+            <td><h2><input type="text" size="32" name="userNameIG"
+                           value="${registeredUser.userNameIG}"> <%=nameIG%></h2></td>
         </tr>
         <%
             String password = (String) request.getAttribute("passwordError");
@@ -64,9 +78,9 @@
                 password = "";
         %>
         <tr>
-            <td width="30%" align="right"> Password:</td>
-            <td><input  type="password" size="32" name="userPassword"
-                        value="${registeredUser.userPassword}"><%=password%></td>
+            <td width="68%" align="right"> <h2>Password:</h2></td>
+            <td><h2><input  type="password" size="32" name="userPassword"
+                            value="${registeredUser.userPassword}"><%=password%><h2></td>
         </tr>
         <%
             String emailInput = (String) request.getAttribute("emailError");
@@ -78,9 +92,9 @@
                 emailEcho = "";
         %>
         <tr>
-            <td width="30%" align="right"> Email:</td>
-            <td><input type="text" size="32" name="userEmail"
-                       value="${registeredUser.userEmail}"><%=emailInput%></td>
+            <td width="68%" align="right"> <h2>Email:<h2></td>
+            <td><h2><input type="text" size="32" name="userEmail"
+                           value="${registeredUser.userEmail}"><%=emailInput%></h2></td>
         </tr>
         <tr>
             <td>
@@ -88,7 +102,7 @@
                 <input type="submit" value="Create Account" name="submit"></td>
     </table>
     <h3>Have a account?</h3>
-    <a href="/RacingGame/login.jsp">LOG IN NOW</a>
+    <a href="/Project/login.jsp">LOG IN NOW</a>
 </form>
 
 </body>
