@@ -65,7 +65,7 @@
         %>
         <tr>
             <td width="30%" align="right"> Password:</td>
-            <td><input  type="text" size="32" name="userPassword"
+            <td><input  type="password" size="32" name="userPassword"
                         value="${registeredUser.userPassword}"><%=password%></td>
         </tr>
         <%
