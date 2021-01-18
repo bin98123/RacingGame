@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 02/01/2021
-  Time: 02:05 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page import="java.util.*"%>
 <%
     ResourceBundle messages = (ResourceBundle) session.getAttribute("messages");
@@ -114,6 +108,7 @@
         <tr>
             <td>
             <td><input type="submit" value="<%=messages.getString("ca")%>"
+
                        name="submit"></td>
     </table>
     <h3><%=messages.getString("login?")%></h3>

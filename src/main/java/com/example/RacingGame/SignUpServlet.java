@@ -27,8 +27,6 @@ public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
 	private Mail mail;
-//	private Properties p;
-//	InputStream is;
 
 	public void init() {
 		userDao = new UserDao();
@@ -37,11 +35,6 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		boolean ok = true;
-//		p = new Properties();
-//		is = new FileInputStream("messages\\BookstoreMessages_vi.properties");
-//		p.load(is);
-//		String emailError1 = p.getProperty("emailError1");
-//		String emailError2 = p.getProperty("emailError2");
 		String userName = request.getParameter("userName");
 		String userNameIG = request.getParameter("userNameIG");
 		String userID = "";
@@ -73,44 +66,6 @@ public class SignUpServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//
-//		try {
-//			if (userDao.countUser() < 100 && userDao.countUser() >= 10) {
-////					temp = userDao.countUser() + 1;
-//				userID = "racingboiz00" + temp;
-//
-//			}
-//		} catch (ClassNotFoundException | SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		try {
-//		else if (userDao.countUser() >= 1000 && userDao.countUser() <= 9999) {
-////						temp = userDao.countUser() + 1;
-//				userID = "racingboiz" + temp;
-//			}
-//		} catch (ClassNotFoundException | SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		try {
-//			if (userDao.countUser() >= 100 && userDao.countUser() <= 999) {
-////						temp = userDao.countUser() + 1;
-//				userID = "racingboiz0" + temp;
-//			}
-//		} catch (ClassNotFoundException | SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		try {
-//			if (userDao.countUser() >= 10 && userDao.countUser() <= 99) {
-////						temp = userDao.countUser() + 1;
-//				userID = "racingboiz00" + temp;
-//			}
-//		} catch (ClassNotFoundException | SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
 
 		String userPassword = request.getParameter("userPassword");
 		String userEmail = request.getParameter("userEmail");
@@ -162,7 +117,10 @@ public class SignUpServlet extends HttpServlet {
 				if (ok == true && userDao.registerUser(userDetails) != 0) {
 					try {
 						mail.sendMail(userEmail);
-						response.sendRedirect("/RacingGame/WelcomeUser.jsp");
+
+						request.setAttribute("registeredUser", userDetails);
+//						response.sendRedirect("/RacingGame/WelcomeUser.jsp");
+						request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
 					} catch (MessagingException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

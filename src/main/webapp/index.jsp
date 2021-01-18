@@ -1,11 +1,11 @@
 
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+         session="true"%>
 <%@ page import="java.util.*"%>
 <%
     ResourceBundle messages = (ResourceBundle) session.getAttribute("messages");
     if (messages == null) {
         Locale locale = request.getLocale();
-//             Locale locale = null;
         messages = ResourceBundle.getBundle("messages.BookstoreMessages", locale);
         session.setAttribute("messages", messages);
     }
@@ -16,16 +16,17 @@
     <title>Racing Typing</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <style>
-        *{
+        * {
             box-sizing: border-box;
         }
-        body, html{
+
+        body, html {
             margin: 0;
             padding: 0;
             height: 100%;
         }
 
-        .bg{
+        .bg {
             height: 100%;
             background-image: url('./img/background.jpg');
             background-repeat: no-repeat;
@@ -33,15 +34,11 @@
         }
 
         .button1 {
-
             left: 840px;
             font-size: 12px;
-
             padding: 15px 32px;
             position: fixed;
-
             color: rgb(2, 1, 1);
-
             cursor: pointer;
         }
 
@@ -59,12 +56,9 @@
             background-color: rgb(28, 179, 48);
             left: 1000px;
             font-size: 12px;
-
             padding: 15px 32px;
             position: fixed;
-
             color: rgb(2, 1, 1);
-
             cursor: pointer;
         }
 
@@ -90,9 +84,7 @@
             top: 140px;
             padding: 10px 50px;
             position: fixed;
-
             color: rgb(2, 1, 1);
-
             cursor: pointer;
         }
 
@@ -103,9 +95,7 @@
             top: 460px;
             padding: 10px 50px;
             position: fixed;
-
             color: rgb(2, 1, 1);
-
             cursor: pointer;
         }
 
@@ -117,15 +107,12 @@
             padding: 10px 50px;
             position: fixed;
             font-family: times new roman;
-
             color: rgb(2, 1, 1);
-
             cursor: pointer;
         }
 
         h1 {
             right: 800px;
-
             top: 210px;
             position: fixed;
             color: white;
@@ -133,23 +120,22 @@
 
         h2 {
             right: 820px;
-
             top: 260px;
             position: fixed;
             color: white;
             font-size: 40px;
         }
+
         tt1 {
             left: 220px;
-
             top: 210px;
             position: fixed;
             color: black;
             font-size: 35px;
         }
+
         tt2 {
             left: 220px;
-
             top: 264px;
             position: fixed;
             color: black;
@@ -158,7 +144,6 @@
 
         t1 {
             left: 130px;
-
             top: 320px;
             position: fixed;
             color: black;
@@ -167,7 +152,6 @@
 
         t2 {
             left: 130px;
-
             top: 360px;
             position: fixed;
             color: black;
@@ -176,7 +160,6 @@
 
         t3 {
             left: 130px;
-
             top: 400px;
             position: fixed;
             color: black;

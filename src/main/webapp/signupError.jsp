@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 02/01/2021
-  Time: 02:05 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.*"%>
 <%	ResourceBundle messages = (ResourceBundle) session.getAttribute("messages"); %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -43,18 +36,6 @@
         h2 {
             color: red;
         }
-        /* input { */
-        /*   background-color: white; */
-        /*   border: none; */
-        /*   color: white; */
-        /*   padding: 15px 32px; */
-        /*   text-align: center; */
-        /*   text-decoration: none; */
-        /*   display: inline-block; */
-        /*   font-size: 16px; */
-        /*   margin: 4px 2px; */
-        /*   cursor: pointer; */
-        /* } */
     </style>
 </head>
 

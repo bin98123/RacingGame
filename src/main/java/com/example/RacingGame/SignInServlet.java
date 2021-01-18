@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProfileDAO;
 import dao.UserDao;
 import dao.UserDetails;
 
@@ -25,6 +26,7 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         boolean ok = true;
+
         UserDetails userDetails = new UserDetails();
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
@@ -43,17 +45,22 @@ public class SignInServlet extends HttpServlet {
         }
         try {
 
-            if (ok == true ) {
+            if (ok == true) {
                 try {
                     Class.forName("org.hsqldb.jdbcDriver");
 
                     Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/sample", "sa", "");
 
                     Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery("select uname,upass from user where uname='" + userName
+                    ResultSet rs = stmt.executeQuery("select uid,uname,upass from user where uname='" + userName
                             + "' and upass='" + userPassword + "'");
 
                     if (rs.next()) {
+                        ProfileDAO dao = new ProfileDAO();
+                        dao.findPic();
+                        String pathAvatar = dao.findPic();
+                        request.setAttribute("pic", pathAvatar);
+                        request.setAttribute("registeredUser", userDetails);
                         request.getRequestDispatcher("/WelcomeUser.jsp").forward(request, response);
 
                     } else {

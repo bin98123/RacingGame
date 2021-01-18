@@ -84,7 +84,11 @@
                            value="${registeredUser.userPassword}"><%=password%></h2></td>
         </tr>
         <tr>
+            <td>Remember me:<input type="checkbox" name="remember"></td>
+        </tr>
+        <tr>
             <td>
+
             <td width="68%"><input type="submit" value="<%=messages.getString("login_index")%>" name="submit"></td>
     </table>
     <h3><%=messages.getString("account?")%></h3>
